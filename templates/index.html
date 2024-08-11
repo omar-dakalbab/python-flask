@@ -1,0 +1,30 @@
+{% extends 'blog.html' %}
+
+{% block header %}
+  <h1>{% block title %}Home{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <br>
+  <h1 class="mt-5">Welcome to our Blog!</h1>
+  <p class="lead">Check out these amazing posts below:</p>
+
+<!-- <div style = "display: flex; flex-wrap: wrap; justify-content: space-between;"> -->
+<div class=" row  row-cols-1 row-cols-md-2 row-cols-lg-3">
+  {% for post in posts: %}
+   <div class=" col mb-4">     <!-- mb stands for "margin-bottom." -->
+ <div class="card" style="width: 18rem; margin-bottom:30px;">  
+     <div class="card-body">
+        <h5 class="card-title">{{ post.title[0:100] }}</h5>  <!-- #from zero to 100 character -->
+        <h6 class="card-subtitle mb-2 text-muted">{{ post.subtitle }}</h6>
+        <p class="card-text">{{ post.body }}</p>
+        <a href="post/{{ post.id }}" class="card-link">Read</a>
+     </div>
+   <div class="card-footer text-muted">
+        {{ post.category.name }}
+   </div>
+   </div>
+  </div>
+   {% endfor %}
+</div>
+{% endblock %}
